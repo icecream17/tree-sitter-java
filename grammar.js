@@ -87,7 +87,8 @@ module.exports = grammar({
       $.false,
       $.character_literal,
       $.string_literal,
-      $.null_literal
+      $.null_literal,
+      $.reserved_unused_literal
     ),
 
     decimal_integer_literal: $ => token(seq(
@@ -155,6 +156,12 @@ module.exports = grammar({
     )),
 
     null_literal: $ => 'null',
+
+    // Reserved keywords that are unused in Java
+    reserved_unused_literal: $ => choice(
+      'const',
+      'goto'
+    ),
 
     // Expressions
 
@@ -334,7 +341,7 @@ module.exports = grammar({
 
     method_invocation: $ => seq(
       choice(
-        field('name', choice($.identifier, $._reserved_identifier)),
+        field('name', $.method_invocation_name),
         seq(
           field('object', choice($.primary_expression, $.super)),
           '.',
@@ -343,11 +350,13 @@ module.exports = grammar({
             '.'
           )),
           field('type_arguments', optional($.type_arguments)),
-          field('name', choice($.identifier, $._reserved_identifier)),
+          field('name', $.method_invocation_name),
         )
       ),
       field('arguments', $.argument_list)
     ),
+
+    method_invocation_name: $ => choice($.identifier, $._reserved_identifier)
 
     argument_list: $ => seq('(', commaSep($.expression), ')'),
 
