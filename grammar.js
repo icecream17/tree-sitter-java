@@ -356,7 +356,7 @@ module.exports = grammar({
       field('arguments', $.argument_list)
     ),
 
-    method_invocation_name: $ => choice($.identifier, $._reserved_identifier)
+    method_invocation_name: $ => choice($.identifier, $._reserved_identifier),
 
     argument_list: $ => seq('(', commaSep($.expression), ')'),
 

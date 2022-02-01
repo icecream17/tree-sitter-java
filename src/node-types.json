@@ -36,11 +36,11 @@
         "named": true
       },
       {
-        "type": "reserved_unused_literal",
+        "type": "octal_integer_literal",
         "named": true
       },
       {
-        "type": "octal_integer_literal",
+        "type": "reserved_unused_literal",
         "named": true
       },
       {
