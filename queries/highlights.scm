@@ -1,7 +1,7 @@
 ; Methods
 
 (method_declaration
-  name: (method_invocation_name (identifier)) @function.method)
+  name: (identifier) @function.method)
 (method_invocation
   name: (method_invocation_name (identifier)) @function.method)
 (super) @function.builtin
