@@ -697,5 +697,6 @@ class A$B {
               (identifier)))
           (expression_statement
             (method_invocation
-              (identifier)
+              (method_invocation_name
+                (identifier))
               (argument_list))))))))
