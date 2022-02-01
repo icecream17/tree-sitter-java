@@ -44,9 +44,9 @@ Integer[][] inputArrays = new Integer[0x100][];
       name: (identifier)
       value: (method_invocation
         object: (method_invocation
-          name: (identifier)
+          name: (method_invocation_name (identifier))
           arguments: (argument_list))
-        name: (identifier)
+        name: (method_invocation_name (identifier))
         arguments: (argument_list))))
   (local_variable_declaration
     type: (array_type
@@ -595,6 +595,37 @@ enum HandSign {
       (enum_constant name: (identifier))
       (enum_constant name: (identifier)))))
 
+==============================================
+class declaration with dollar-sign identifiers
+==============================================
+
+class A$B {
+  void func() {
+    $object.$property;
+    $hello();
+  }
+}
+
+---
+
+(program
+  (class_declaration
+    (identifier)
+    (class_body
+      (method_declaration
+        (void_type)
+        (identifier)
+        (formal_parameters)
+        (block
+          (expression_statement
+            (field_access
+              (identifier)
+              (identifier)))
+          (expression_statement
+            (method_invocation
+              (method_invocation_name
+                (identifier))
+              (argument_list))))))))
 
 =================
 record declaration
