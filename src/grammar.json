@@ -55,6 +55,10 @@
         {
           "type": "SYMBOL",
           "name": "null_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "reserved_unused_literal"
         }
       ]
     },
@@ -1100,6 +1104,19 @@
     "null_literal": {
       "type": "STRING",
       "value": "null"
+    },
+    "reserved_unused_literal": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "const"
+        },
+        {
+          "type": "STRING",
+          "value": "goto"
+        }
+      ]
     },
     "expression": {
       "type": "CHOICE",
@@ -2640,17 +2657,8 @@
               "type": "FIELD",
               "name": "name",
               "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_reserved_identifier"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "method_invocation_name"
               }
             },
             {
@@ -2718,17 +2726,8 @@
                   "type": "FIELD",
                   "name": "name",
                   "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "identifier"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_reserved_identifier"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "method_invocation_name"
                   }
                 }
               ]
@@ -2742,6 +2741,19 @@
             "type": "SYMBOL",
             "name": "argument_list"
           }
+        }
+      ]
+    },
+    "method_invocation_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_reserved_identifier"
         }
       ]
     },
